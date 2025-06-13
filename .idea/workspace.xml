@@ -5,18 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="47b1c480-4d11-41ba-80dd-40ce2d9ac226" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/ReportServicesPowerBI.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PBIReportApp/.funcignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PBIReportApp/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PBIReportApp/host.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PBIReportApp/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PBIReportApp/test_report_1/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PBIReportApp/test_report_1/function.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/settings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config_loader.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/report_bi_castrolanda/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/report_bi_metricas_saude/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/report_bi_metricas_saude/function.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shared/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shared/modules.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shared/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PBIReportApp/.funcignore" beforeDir="false" afterPath="$PROJECT_DIR$/.funcignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PBIReportApp/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PBIReportApp/host.json" beforeDir="false" afterPath="$PROJECT_DIR$/host.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PBIReportApp/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PBIReportApp/test_report_1/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PBIReportApp/test_report_1/function.json" beforeDir="false" afterPath="$PROJECT_DIR$/report_bi_castrolanda/function.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,14 +45,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/Gustavo/PycharmProjects/ReportServicesPowerBI"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Gustavo\PycharmProjects\ReportServicesPowerBI" />
+      <recent name="C:\Users\Gustavo\PycharmProjects\ReportServicesPowerBI\PBIReportApp\report_bi_metricas_saude" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Gustavo\PycharmProjects\ReportServicesPowerBI\PBIReportApp\report_bi_castrolanda" />
+      <recent name="C:\Users\Gustavo\PycharmProjects\ReportServicesPowerBI\PBIReportApp\shared" />
+      <recent name="C:\Users\Gustavo\PycharmProjects\ReportServicesPowerBI\PBIReportApp" />
       <recent name="C:\Users\Gustavo\PycharmProjects\ReportServicesPowerBI" />
     </key>
   </component>
@@ -70,5 +82,8 @@
       <updated>1749574528610</updated>
     </task>
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
   </component>
 </project>
