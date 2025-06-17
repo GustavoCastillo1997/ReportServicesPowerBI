@@ -5,10 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="47b1c480-4d11-41ba-80dd-40ce2d9ac226" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/bi_castrolanda_single/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shared/utils_blob.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/report_bi_castrolanda/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/report_bi_castrolanda/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config_loader.py" beforeDir="false" afterPath="$PROJECT_DIR$/config_loader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report_bi_castrolanda/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report_bi_castrolanda/function.json" beforeDir="false" afterPath="$PROJECT_DIR$/bi_castrolanda_single/function.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report_bi_metricas_saude/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/report_bi_metricas_saude/function.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/secrets/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/secrets/.env.example" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shared/modules.py" beforeDir="false" afterPath="$PROJECT_DIR$/shared/modules.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/shared/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,15 +43,17 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.__init__.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/Gustavo/PycharmProjects/ReportServicesPowerBI",
+    "last_opened_file_path": "C:/Users/Gustavo/PycharmProjects/ReportServicesPowerBI/bi_castrolanda_all",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Gustavo\PycharmProjects\ReportServicesPowerBI\bi_castrolanda_all" />
       <recent name="C:\Users\Gustavo\PycharmProjects\ReportServicesPowerBI" />
       <recent name="C:\Users\Gustavo\PycharmProjects\ReportServicesPowerBI\PBIReportApp\report_bi_metricas_saude" />
     </key>
