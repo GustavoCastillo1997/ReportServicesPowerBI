@@ -24,7 +24,7 @@ def get_env_variable(key: str) -> str:
         raise EnvironmentError(f'Variável de ambiente "{key}" não encontrada ou vazia.')
     return value
 
-def get_config(config_path: str = '../config/settings.json') -> dict:
+def get_config(config_path: str = '../config/pbi_settings.json') -> dict:
     try:
         with open(config_path, 'r', encoding='utf-8') as f:
             return json.load(f)
@@ -40,6 +40,15 @@ def get_azure_blob_config() -> dict:
         'account_key': get_env_variable('AZURE_STORAGE_ACCOUNT_KEY')
     }
 
+def get_smtp_config() -> dict:
+    return {
+        'smtp_user': get_env_variable('SMTP_USER'),
+        'smtp_pass': get_env_variable('SMTP_PASS'),
+        'smtp_host': os.getenv('SMTP_HOST', 'smtp.seudominio.com'),  # valor default caso queira
+        'smtp_port': int(os.getenv('SMTP_PORT', 587)),
+        'smtp_name': os.getenv('SMTP_NAME', 'Serviço de Relatórios')
+    }
+
 def get_powerbi_oauth_config() -> dict:
     return {
         'tenant_id': get_env_variable('TENANT_ID'),
@@ -48,10 +57,10 @@ def get_powerbi_oauth_config() -> dict:
         'scope': os.getenv('POWER_BI_SCOPE', 'https://analysis.windows.net/powerbi/api/.default')
     }
 
-def get_powerbi_workspace_config(config_path: str = '../config/settings.json') -> dict:
+def get_powerbi_workspace_config(config_path: str = '../config/pbi_settings.json') -> dict:
     config = get_config(config_path)
     if 'workspace_id' not in config or 'report_id' not in config:
-        raise KeyError('O arquivo settings.json deve conter "workspace_id" e "report_id".')
+        raise KeyError('O arquivo pbi_settings.json deve conter "workspace_id" e "report_id".')
     return {
         'workspace_id': config['workspace_id'],
         'report_id': config['report_id']

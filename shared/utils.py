@@ -5,8 +5,6 @@ import azure.functions as func
 from typing import Any, Dict, Tuple
 
 
-
-
 def generate_unique_id() -> str:
     return str(uuid.uuid4())
 
