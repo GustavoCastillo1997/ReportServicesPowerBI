@@ -2,6 +2,7 @@ import uuid
 import json
 import logging
 import azure.functions as func
+from config_loader import init_config
 from typing import Any, Dict, Tuple
 
 
@@ -20,3 +21,27 @@ def extract_json_data(req: func.HttpRequest) -> Tuple[Dict[str, Any], int]:
     except Exception as e:
         logging.error(f'Erro ao processar requisição: {e}')
         return {"error": "Erro ao processar os dados"}, 500
+
+def init_and_extract(req: func.HttpRequest):
+    init_config()
+    data, status = extract_json_data(req)
+    if status != 200:
+        logging.warning('Falha na geração do relatório: JSON inválido')
+        return None, func.HttpResponse("Erro no JSON", status_code=400)
+    return data, None
+
+def handle_exception() -> func.HttpResponse:
+    logging.error('Erro no processamento da função:', exc_info=True)
+    return func.HttpResponse("Erro interno no servidor", status_code=500)
+
+def set_email_body(link: str) -> str:
+    f"""
+        <html>
+            <body>
+                <p>Olá!</p>
+                <p>Clique no link abaixo para realizar o seu download:</p>
+                <p><a href="{link}">Download Relatório</a></p>
+                <p>Att,<br>APCBRH</p>
+            </body>
+        </html>
+    """

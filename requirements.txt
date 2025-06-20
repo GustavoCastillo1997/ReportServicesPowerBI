@@ -7,4 +7,5 @@ openpyxl
 requests
 pandas
 azure-functions
+azure-storage-blob
 python-dotenv

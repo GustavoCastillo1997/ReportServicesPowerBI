@@ -1,22 +1,31 @@
 import os
 import json
+import logging
 from dotenv import load_dotenv
 
 
 def init_config():
     env = os.getenv('AZURE_FUNCTIONS_ENVIRONMENT')
-    print(f'AZURE_FUNCTIONS_ENVIRONMENT: {env}')
+    logging.info(f'AZURE_FUNCTIONS_ENVIRONMENT: {env}')
 
     if env != 'Production':
-        dotenv_path = os.path.join(os.path.dirname(__file__), 'secrets', '.env')
+        load_local_env()
 
-        environment_set = load_dotenv(dotenv_path)
-        if environment_set:
-            print(f'env carregado com sucesso!')
+    conn_string = os.getenv('AZURE_STORAGE_CONNECTION_STRING')
+    if not conn_string:
+        logging.warning('AZURE_STORAGE_CONNECTION_STRING não definida.')
+    else:
+        logging.info('AZURE_STORAGE_CONNECTION_STRING definida.')
+
+def load_local_env():
+    dotenv_path = os.path.join(os.path.dirname(__file__), 'secrets', '.env')
+    if os.path.exists(dotenv_path):
+        if load_dotenv(dotenv_path):
+            logging.info('Arquivo .env local carregado com sucesso.')
         else:
-            print(f'Falha no carregamento do env')
-
-        os.getenv('AZURE_STORAGE_CONNECTION_STRING')
+            logging.warning('Falha ao carregar .env local.')
+    else:
+        logging.warning('.env local não encontrado.')
 
 def get_env_variable(key: str) -> str:
     value = os.getenv(key)
@@ -24,7 +33,7 @@ def get_env_variable(key: str) -> str:
         raise EnvironmentError(f'Variável de ambiente "{key}" não encontrada ou vazia.')
     return value
 
-def get_config(config_path: str = '../config/pbi_settings.json') -> dict:
+def get_config_file(config_path: str = '../config/pbi_settings.json') -> dict:
     try:
         with open(config_path, 'r', encoding='utf-8') as f:
             return json.load(f)
@@ -58,7 +67,7 @@ def get_powerbi_oauth_config() -> dict:
     }
 
 def get_powerbi_workspace_config(config_path: str = '../config/pbi_settings.json') -> dict:
-    config = get_config(config_path)
+    config = get_config_file(config_path)
     if 'workspace_id' not in config or 'report_id' not in config:
         raise KeyError('O arquivo pbi_settings.json deve conter "workspace_id" e "report_id".')
     return {

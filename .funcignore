@@ -1,0 +1,17 @@
+.env
+.env.example
+
+local.settings.json
+
+.vscode/
+
+.venv/
+
+.git/
+.gitignore
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
