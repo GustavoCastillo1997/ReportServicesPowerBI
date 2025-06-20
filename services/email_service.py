@@ -4,6 +4,19 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.utils import formataddr
 
+
+def set_email_body(link: str) -> str:
+    return f"""
+        <html>
+            <body>
+                <p>Olá!</p>
+                <p>Clique no link abaixo para realizar o seu download:</p>
+                <p><a href="{link}">Download Relatório</a></p>
+                <p>Att,<br>APCBRH</p>
+            </body>
+        </html>
+    """
+
 def send_email(recipient: str, subject: str, email_body: str, is_html: bool = False) -> None:
 
     config = get_smtp_config()

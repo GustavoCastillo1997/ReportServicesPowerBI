@@ -33,15 +33,3 @@ def init_and_extract(req: func.HttpRequest):
 def handle_exception() -> func.HttpResponse:
     logging.error('Erro no processamento da função:', exc_info=True)
     return func.HttpResponse("Erro interno no servidor", status_code=500)
-
-def set_email_body(link: str) -> str:
-    f"""
-        <html>
-            <body>
-                <p>Olá!</p>
-                <p>Clique no link abaixo para realizar o seu download:</p>
-                <p><a href="{link}">Download Relatório</a></p>
-                <p>Att,<br>APCBRH</p>
-            </body>
-        </html>
-    """

@@ -1,7 +1,7 @@
 import azure.functions as func
 import pandas as pd
 import logging
-from services.email_service import send_email
+from services.email_service import set_email_body, send_email
 from datetime import datetime
 from shared import *
 
