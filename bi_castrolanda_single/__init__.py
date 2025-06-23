@@ -7,16 +7,20 @@ from shared import *
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('bi_castrolanda_single iniciado')
-
     try:
         data, error_response = init_and_extract(req)
         if error_response:
             return error_response
 
-        df = pd.DataFrame([data])
-        df['Media Leite por Animal'] = df['Media Leite por Animal'].round(2)
-        df['Ultimo Cadastro'] = pd.to_datetime(df['Ultimo Cadastro'])
-        df['Ultimo Cadastro'] = df['Ultimo Cadastro'].dt.strftime('%d/%m/%Y')
+        filtered_data = data.get("filteredData")
+        if not filtered_data or not isinstance(filtered_data, list):
+            logging.error("Dados de entrada inválidos ou vazios.")
+            return func.HttpResponse(
+                "Dados de entrada inválidos ou ausentes.",
+                status_code=400
+            )
+
+        df = pd.DataFrame(filtered_data)
 
         timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
         df_in_bytes = df_to_bytes_excel(df)
@@ -27,7 +31,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         send_email('gustavo@apcbrh.com.br', 'B.I Castrolanda - Relatório', email_body, is_html=True)
 
         logging.info('Relatório gerado e email enviado com sucesso.')
-        return func.HttpResponse("Sucesso", status_code=200)
+        return sas_response({'sasLink': download_link})
     except Exception as e:
         logging.error(f'Erro inesperado: {e}', exc_info=True)
         return handle_exception()

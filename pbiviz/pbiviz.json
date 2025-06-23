@@ -1,0 +1,22 @@
+{
+  "visual": {
+    "name": "ButtonToReport",
+    "displayName": "Gerar Relatório",
+    "guid": "d9f4a2c8-8f3e-4f7b-9a1b-2e5c7d8f9b0a",
+    "visualClassName": "Visual",
+    "version": "1.0.0.0",
+    "description": "Botão que gera relatório excel e envia por email",
+    "supportUrl": "",
+    "gitHubUrl": "https://github.com/GustavoCastillo1997/ReportServicesPowerBI",
+    "src": "src/visuals.ts"
+  },
+  "apiVersion": "3.4.0",
+  "author": {
+    "name": "Gustavo Olmedo Scevola Castillo",
+    "email": "gustavoosc_@hotmail.com"
+  },
+  "assets": {
+    "icon": "assets/excel.png"
+  },
+  "capabilities": "capabilities.json"
+}

@@ -1,0 +1,26 @@
+{
+  "name": "button-to-report",
+  "version": "1.0.0.0",
+  "description": "Botão que gera relatório Excel e envia por email",
+  "main": "src/visuals.ts",
+  "scripts": {
+    "start": "pbiviz start",
+    "package": "pbiviz package",
+    "lint": "eslint . --ext .ts"
+  },
+  "author": "Gustavo Olmedo Scevola Castillo <gustavoosc_@hotmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GustavoCastillo1997/ReportServicesPowerBI"
+  },
+  "devDependencies": {
+    "@types/node": "^16.0.0",
+    "eslint": "^8.0.0",
+    "powerbi-visuals-tools": "3.4.0",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "powerbi-visuals-api": "~3.4.0"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ES5",
+    "module": "commonjs",
+    "outDir": "./.tmp/build",
+    "rootDir": "./src",
+    "sourceMap": true,
+    "declaration": false,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "removeComments": false,
+    "typeRoots": [
+      "./node_modules/@types"
+    ]
+  },
+  "files": [
+    "src/visuals.ts",
+    "src/utils/buttonFactory.ts",
+    "src/utils/buttonUtils.ts",
+    "src/utils/dataUtils.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    ".tmp",
+    "dist"
+  ]
+}

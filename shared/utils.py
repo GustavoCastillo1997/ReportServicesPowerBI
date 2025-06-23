@@ -33,3 +33,11 @@ def init_and_extract(req: func.HttpRequest):
 def handle_exception() -> func.HttpResponse:
     logging.error('Erro no processamento da função:', exc_info=True)
     return func.HttpResponse("Erro interno no servidor", status_code=500)
+
+def sas_response(link: dict[str, Any], status_code: int = 200) -> func.HttpResponse:
+    response_body = json.dumps(link)
+    return func.HttpResponse(
+        body=response_body,
+        status_code=status_code,
+        mimetype="application/json"
+    )
