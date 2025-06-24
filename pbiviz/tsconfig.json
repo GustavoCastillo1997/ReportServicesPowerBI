@@ -2,26 +2,17 @@
   "compilerOptions": {
     "target": "ES5",
     "module": "commonjs",
+    "rootDir": "",
     "outDir": "./.tmp/build",
-    "rootDir": "./src",
     "sourceMap": true,
-    "declaration": false,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "removeComments": false,
-    "typeRoots": [
-      "./node_modules/@types"
-    ]
+    "lib": ["es5", "dom"],
+    "noImplicitAny": false
   },
   "files": [
-    "src/visuals.ts",
-    "src/utils/buttonFactory.ts",
-    "src/utils/buttonUtils.ts",
-    "src/utils/dataUtils.ts"
+    "src/visuals.ts"
   ],
   "exclude": [
     "node_modules",
-    ".tmp",
-    "dist"
+    ".tmp"
   ]
 }

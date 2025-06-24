@@ -1,55 +1,68 @@
-"use strict";
-
-import "core-js/stable";
-import * as powerbi from "powerbi-visuals-api";
+import powerbi from "powerbi-visuals-api";
+import IVisual = powerbi.extensibility.visual.IVisual;
 import VisualConstructorOptions = powerbi.extensibility.visual.VisualConstructorOptions;
 import VisualUpdateOptions = powerbi.extensibility.visual.VisualUpdateOptions;
-import { disableButton, enableButton, setButtonConfig } from "./utils/buttonUtils";
-import { createButtonImage } from "./utils/buttonFactory";
-import { extractData } from "./utils/dataUtils";
 
-export class Visual implements powerbi.extensibility.visual.IVisual {
-  private target: HTMLElement;
+export class Visual implements IVisual {
   private button: HTMLButtonElement;
+  private data: any[] = [];
 
   constructor(options: VisualConstructorOptions) {
-    this.target = options.element;
-    this.button = createButtonImage("assets/excel.png", "Gerar Relatório", "Gerar Relatório");
-    this.target.appendChild(this.button);
+    const image = document.createElement("img");
+    image.src = "assets/icon.png";
+    image.alt = "Ícone do botão";
+    image.style.width = "40px";
+    image.style.height = "40px";
+    image.style.display = "block";
+    image.style.marginBottom = "10px";
+
+    this.button = document.createElement("button");
+    this.button.textContent = "Enviar Filtros";
+    this.button.disabled = true;
+    this.button.style.margin = "10px 0";
+    this.button.style.padding = "6px 14px";
+    this.button.style.fontSize = "14px";
+
+    this.button.onclick = () => this.sendRequest();
+
+    options.element.appendChild(image);
+    options.element.appendChild(this.button);
   }
 
-  public update(options: VisualUpdateOptions) {
-    const dataView = options.dataViews && options.dataViews[0];
-    const data = extractData(dataView);
-    const endpoint = "https://apcbrh-powerbi-report-app.azurewebsites.net/api/bi_castrolanda_single";
+  public update(options: VisualUpdateOptions): void {
+    const dataView = options.dataViews?.[0]?.table;
+    if (!dataView || !dataView.rows || !dataView.columns) {
+      this.button.disabled = true;
+      return;
+    }
 
-    setButtonConfig(this.button, data, endpoint, this.sendData.bind(this));
+    const columns = dataView.columns.map(col => col.displayName);
+    this.data = dataView.rows.map(row => {
+      const obj: { [key: string]: any } = {};
+      row.forEach((value, index) => {
+        obj[columns[index]] = value;
+      });
+      return obj;
+    });
+
+    this.button.disabled = this.data.length === 0;
   }
 
-  private sendData(endpoint: string, data: any[]) {
-    const payload = {
-      origin: "PowerBI",
-      timestamp: new Date().toISOString(),
-      filteredData: data,
-    };
-
-    fetch(endpoint, {
+  private sendRequest(): void {
+    fetch("https://apcbrh-powerbi-report-app.azurewebsites.net/api/bi_castrolanda_single", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
+      body: JSON.stringify({ filtros: this.data })
     })
-    .then(res => res.json())
-    .then(data => {
-      if (data.sasLink) {
-        window.open(data.sasLink, "_blank");
-        alert("Relatório solicitado e download iniciado!");
-      } else {
-        alert("Erro: link para download não recebido.");
-      }
-    })
-    .catch(err => {
-      console.error("Erro na requisição:", err);
-      alert("Erro técnico ao enviar os dados.");
-    });
+      .then(response => {
+        if (response.ok) {
+          alert("✅ Enviado com sucesso!");
+        } else {
+          alert(`⚠️ Erro ao enviar: ${response.status}`);
+        }
+      })
+      .catch(error => {
+        alert("❌ Falha na requisição: " + error.message);
+      });
   }
 }

@@ -1,0 +1,26 @@
+{
+  "dataRoles": [
+    {
+      "name": "dados",
+      "kind": "Grouping",
+      "displayName": "Filtros"
+    }
+  ],
+  "dataViewMappings": [
+    {
+      "table": {
+        "rows": {
+          "select": [
+            {
+              "for": {
+                "in": "dados"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "objects": {},
+  "privileges": []
+}
