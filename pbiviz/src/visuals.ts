@@ -5,19 +5,20 @@ import VisualUpdateOptions = powerbi.extensibility.visual.VisualUpdateOptions;
 
 export class Visual implements IVisual {
   private button: HTMLButtonElement;
+  private logDiv: HTMLDivElement;
   private data: any[] = [];
 
   constructor(options: VisualConstructorOptions) {
-    const image = document.createElement("img");
-    image.src = "assets/icon.png";
-    image.alt = "Ícone do botão";
-    image.style.width = "40px";
-    image.style.height = "40px";
-    image.style.display = "block";
-    image.style.marginBottom = "10px";
+    const container = document.createElement("div");
+    container.style.width = "100%";
+    container.style.height = "100%";
+    container.style.display = "flex";
+    container.style.flexDirection = "column";
+    container.style.alignItems = "center";
+    container.style.justifyContent = "center";
 
     this.button = document.createElement("button");
-    this.button.textContent = "Enviar Filtros";
+    this.button.textContent = "Gerar Relatório";
     this.button.disabled = true;
     this.button.style.margin = "10px 0";
     this.button.style.padding = "6px 14px";
@@ -25,19 +26,54 @@ export class Visual implements IVisual {
 
     this.button.onclick = () => this.sendRequest();
 
-    options.element.appendChild(image);
-    options.element.appendChild(this.button);
+    this.logDiv = document.createElement("div");
+    this.logDiv.style.width = "90%";
+    this.logDiv.style.height = "150px";
+    this.logDiv.style.overflowY = "auto";
+    this.logDiv.style.border = "1px solid #ccc";
+    this.logDiv.style.padding = "8px";
+    this.logDiv.style.fontSize = "12px";
+    this.logDiv.style.fontFamily = "monospace";
+    this.logDiv.style.backgroundColor = "#f9f9f9";
+    this.logDiv.style.whiteSpace = "pre-wrap";
+    this.logDiv.style.marginTop = "10px";
+
+    container.appendChild(this.button);
+    container.appendChild(this.logDiv);
+    options.element.appendChild(container);
+  }
+
+  private log(message: string) {
+    const time = new Date().toLocaleTimeString();
+    this.logDiv.textContent += `[${time}] ${message}\n`;
+    this.logDiv.scrollTop = this.logDiv.scrollHeight;
   }
 
   public update(options: VisualUpdateOptions): void {
-    const dataView = options.dataViews?.[0]?.table;
-    if (!dataView || !dataView.rows || !dataView.columns) {
+    const dataView = options.dataViews?.[0];
+
+    this.log(`DataView recebido? ${dataView ? "Sim" : "Não"}`);
+
+    if (dataView?.table) {
+      this.log("Tipo detectado: TABLE");
+    } else if (dataView?.categorical) {
+      this.log("Tipo detectado: CATEGORICAL");
+    } else if (dataView?.matrix) {
+      this.log("Tipo detectado: MATRIX");
+    } else {
+      this.log("Tipo de dataView desconhecido ou vazio");
+    }
+
+    const table = dataView?.table;
+
+    if (!table || !table.rows || !table.columns) {
+      this.log("Dados de tabela incompletos ou ausentes. Botão desabilitado.");
       this.button.disabled = true;
       return;
     }
 
-    const columns = dataView.columns.map(col => col.displayName);
-    this.data = dataView.rows.map(row => {
+    const columns = table.columns.map(col => col.displayName);
+    this.data = table.rows.map(row => {
       const obj: { [key: string]: any } = {};
       row.forEach((value, index) => {
         obj[columns[index]] = value;
@@ -45,10 +81,12 @@ export class Visual implements IVisual {
       return obj;
     });
 
+    this.log(`Dados carregados: ${this.data.length} linhas.`);
     this.button.disabled = this.data.length === 0;
   }
 
   private sendRequest(): void {
+    console.log("Enviando dados...:", this.data);
     fetch("https://apcbrh-powerbi-report-app.azurewebsites.net/api/bi_castrolanda_single", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -56,13 +94,16 @@ export class Visual implements IVisual {
     })
       .then(response => {
         if (response.ok) {
-          alert("✅ Enviado com sucesso!");
+          alert("Requisição enviada com sucesso.");
+          this.log("Requisição enviada com sucesso.");
         } else {
-          alert(`⚠️ Erro ao enviar: ${response.status}`);
+          alert(`Erro ao enviar: ${response.status}`);
+          this.log(`Erro ao enviar: ${response.status}`);
         }
       })
       .catch(error => {
-        alert("❌ Falha na requisição: " + error.message);
+        alert("Falha na requisição: " + error.message);
+        this.log(`Falha na requisição: ${error.message}`);
       });
   }
 }
