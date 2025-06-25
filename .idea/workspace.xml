@@ -5,11 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="47b1c480-4d11-41ba-80dd-40ce2d9ac226" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pbiviz/assets/icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/pbiviz/assets/icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pbiviz/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/pbiviz/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pbiviz/.tmp/drop/pbiviz.json" beforeDir="false" afterPath="$PROJECT_DIR$/pbiviz/.tmp/drop/pbiviz.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pbiviz/.tmp/drop/status" beforeDir="false" afterPath="$PROJECT_DIR$/pbiviz/.tmp/drop/status" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pbiviz/.tmp/drop/visual.js" beforeDir="false" afterPath="$PROJECT_DIR$/pbiviz/.tmp/drop/visual.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pbiviz/.tmp/precompile/visualPlugin.ts" beforeDir="false" afterPath="$PROJECT_DIR$/pbiviz/.tmp/precompile/visualPlugin.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pbiviz/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/pbiviz/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pbiviz/pbiviz.json" beforeDir="false" afterPath="$PROJECT_DIR$/pbiviz/pbiviz.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pbiviz/src/visuals.ts" beforeDir="false" afterPath="$PROJECT_DIR$/pbiviz/src/visuals.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pbiviz/webpack.statistics.prod.html" beforeDir="false" afterPath="$PROJECT_DIR$/pbiviz/webpack.statistics.prod.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,16 +39,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.__init__.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/Gustavo/PycharmProjects/ReportServicesPowerBI/pbiviz/assets",
-    "settings.editor.selected.configurable": "preferences.fileTypes"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.__init__.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Gustavo/PycharmProjects/ReportServicesPowerBI/pbiviz/assets&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.fileTypes&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Gustavo\PycharmProjects\ReportServicesPowerBI\pbiviz\assets" />

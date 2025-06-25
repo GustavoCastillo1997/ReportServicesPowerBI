@@ -1,5 +1,5 @@
 {
-  "name": "botao-envia-api",
+  "name": "gerar-relatorio",
   "version": "1.0.0.0",
   "scripts": {
     "start": "pbiviz start",

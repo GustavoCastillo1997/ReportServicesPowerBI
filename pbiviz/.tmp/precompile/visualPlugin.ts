@@ -7,7 +7,7 @@ var powerbiKey: any = "powerbi";
 var powerbi: any = window[powerbiKey];
 var qe5k6fz8g7ydw: IVisualPlugin = {
     name: 'qe5k6fz8g7ydw',
-    displayName: 'Botão Envia API',
+    displayName: 'Gerar Relatório',
     class: 'Visual',
     apiVersion: '5.3.0',
     create: (options?: VisualConstructorOptions) => {

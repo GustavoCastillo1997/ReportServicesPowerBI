@@ -1,13 +1,13 @@
 {
   "visual": {
-    "name": "BotaoEnviaAPI",
-    "displayName": "Botão Envia API",
+    "name": "Gerar Relatório",
+    "displayName": "Gerar Relatório",
     "guid": "qe5k6fz8g7ydw",
     "visualClassName": "Visual",
     "version": "1.0.0.0",
-    "description": "Botão que envia filtros para API",
-    "supportUrl": "https://www.microsoft.com/power-bi",
-    "gitHubUrl": ""
+    "description": "Botão que envia dataviews para API e gera relatório excel",
+    "supportUrl": "https://github.com/GustavoCastillo1997",
+    "gitHubUrl": "https://github.com/GustavoCastillo1997"
   },
   "apiVersion": "5.3.0",
   "author": {

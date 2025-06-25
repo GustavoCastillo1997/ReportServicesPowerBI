@@ -21,9 +21,6 @@ project.lock.json
 appsettings.json
 local.settings.json
 
-node_modules
-dist
-
 # Local python packages
 .python_packages/
 
@@ -46,3 +43,9 @@ __blobstorage__
 __queuestorage__
 __azurite_db*__.json
 /.vscode
+
+# PBI Visual Tool Files
+dist/
+node_modules/
+.tmp/
+webpack_statistics.prod.html
