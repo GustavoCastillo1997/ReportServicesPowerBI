@@ -5,11 +5,15 @@
     "rootDir": "",
     "outDir": "./.tmp/build",
     "sourceMap": true,
-    "lib": ["es5", "dom"],
+    "lib": ["es5", "es2015", "dom"],
     "noImplicitAny": false
   },
   "files": [
-    "src/visuals.ts"
+    "src/visuals.ts",
+    "src/core/apiReq.ts",
+    "src/core/apiResp.ts",
+    "src/core/dataHandler.ts",
+    "src/core/ui.ts"
   ],
   "exclude": [
     "node_modules",

@@ -5,14 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="47b1c480-4d11-41ba-80dd-40ce2d9ac226" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pbiviz/src/core/apiReq.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pbiviz/src/core/apiResp.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pbiviz/src/core/dataHandler.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pbiviz/src/core/ui.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ReportServicesPowerBI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ReportServicesPowerBI.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pbiviz/.tmp/drop/pbiviz.json" beforeDir="false" afterPath="$PROJECT_DIR$/pbiviz/.tmp/drop/pbiviz.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pbiviz/.tmp/drop/status" beforeDir="false" afterPath="$PROJECT_DIR$/pbiviz/.tmp/drop/status" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pbiviz/.tmp/drop/visual.js" beforeDir="false" afterPath="$PROJECT_DIR$/pbiviz/.tmp/drop/visual.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pbiviz/.tmp/precompile/visualPlugin.ts" beforeDir="false" afterPath="$PROJECT_DIR$/pbiviz/.tmp/precompile/visualPlugin.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pbiviz/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/pbiviz/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pbiviz/pbiviz.json" beforeDir="false" afterPath="$PROJECT_DIR$/pbiviz/pbiviz.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pbiviz/src/visuals.ts" beforeDir="false" afterPath="$PROJECT_DIR$/pbiviz/src/visuals.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pbiviz/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/pbiviz/tsconfig.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pbiviz/webpack.statistics.prod.html" beforeDir="false" afterPath="$PROJECT_DIR$/pbiviz/webpack.statistics.prod.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -57,11 +60,11 @@
       <recent name="C:\Users\Gustavo\PycharmProjects\ReportServicesPowerBI\PBIReportApp\report_bi_metricas_saude" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Gustavo\PycharmProjects\ReportServicesPowerBI\pbiviz\src\core" />
       <recent name="C:\Users\Gustavo\PycharmProjects\ReportServicesPowerBI\pbiviz\assets" />
       <recent name="C:\Users\Gustavo\PycharmProjects\ReportServicesPowerBI\pbiviz" />
       <recent name="C:\Users\Gustavo\PycharmProjects\ReportServicesPowerBI\pbiviz\src\assets" />
       <recent name="C:\Users\Gustavo\PycharmProjects\ReportServicesPowerBI\pbiviz\button_visual\assets" />
-      <recent name="C:\Users\Gustavo\PycharmProjects\ReportServicesPowerBI\PBIReportApp\report_bi_castrolanda" />
     </key>
   </component>
   <component name="SharedIndexes">
