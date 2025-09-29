@@ -1,30 +1,27 @@
-import { log } from "./ui";
-
-
-export function handleResponse(logDiv: HTMLDivElement): (res: Response) => Promise<void> {
-  return async (response: Response) => {
+export function handleResponse(response: Response): Promise<void> {
+  return async () => {
     if (!response.ok) {
-      log(logDiv, `Erro ao enviar: ${response.status}`);
+      console.log(`Erro ao enviar: ${response.status}`);
       alert(`Erro ao enviar: ${response.status}`);
       return;
     }
     const result = await response.json();
-    log(logDiv, "Requisição enviada com sucesso.");
+    console.log("Requisição enviada com sucesso.");
     alert("Requisição enviada com sucesso.");
-    processBackendResult(result, logDiv);
+    processBackendResult(result);
   };
 }
 
-export function processBackendResult(result: any, logDiv: HTMLDivElement): void {
+export function processBackendResult(result: any): void {
   if (result?.sasUrl) {
-    log(logDiv, "Abrindo relatório...");
+    console.log("Abrindo relatório...");
     window.open(result.sasUrl, "_blank");
   } else {
-    log(logDiv, "Resposta recebida, mas 'sasUrl' não encontrado.");
+    console.log("Resposta recebida, mas 'sasUrl' não encontrado.");
   }
 }
 
-export function handleError(error: any, logDiv: HTMLDivElement): void {
-  log(logDiv, `Falha na requisição: ${error.message}`);
+export function handleError(error: any): void {
+  console.log(`Falha na requisição: ${error.message}`);
   alert("Falha na requisição: " + error.message);
 }

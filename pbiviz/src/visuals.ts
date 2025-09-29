@@ -4,46 +4,42 @@ import VisualConstructorOptions = powerbi.extensibility.visual.VisualConstructor
 import VisualUpdateOptions = powerbi.extensibility.visual.VisualUpdateOptions;
 
 import { createButton, createLogDiv, log } from "./core/ui";
-import { extractTableData } from "./core/dataHandler";
+import { extractAppliedFilters } from "./core/dataHandler";
 import { sendRequest } from "./core/apiReq";
-
+import { buildRequestOptions } from "./core/apiReq";
 
 export class Visual implements IVisual {
-  private button: HTMLButtonElement;
-  private logDiv: HTMLDivElement;
-  private data: any[] = [];
+    private button: HTMLButtonElement;
+    private options: VisualConstructorOptions;
 
-  constructor(options: VisualConstructorOptions) {
-    const container = document.createElement("div");
-    container.style.width = "100%";
-    container.style.height = "100%";
-    container.style.display = "flex";
-    container.style.flexDirection = "column";
-    container.style.alignItems = "center";
-    container.style.justifyContent = "center";
+    constructor(options: VisualConstructorOptions) {
+        this.options = options;
 
-    this.logDiv = createLogDiv();
-    this.button = createButton(() => sendRequest(this.data, this.logDiv));
+        const container = document.createElement("div");
+        container.style.width = "100%";
+        container.style.height = "100%";
+        container.style.display = "flex";
+        container.style.flexDirection = "column";
+        container.style.alignItems = "center";
+        container.style.justifyContent = "center";
 
-    container.appendChild(this.button);
-    container.appendChild(this.logDiv);
-    options.element.appendChild(container);
+        this.button = createButton(() => this.handleButtonClick());
+
+        container.appendChild(this.button);
+        options.element.appendChild(container);
+    }
+
+  private handleButtonClick(): void {
+    const dataView = this.options.dataViews?.[0];
+    if (dataView) {
+      const filters = extractAppliedFilters(dataView.filters || []);
+      const requestOptions = buildRequestOptions(filters);
+      sendRequest(requestOptions);
+    }
   }
 
   public update(options: VisualUpdateOptions): void {
     const dataView = options.dataViews?.[0];
-    log(this.logDiv, `DataView recebido? ${dataView ? "Sim" : "Não"}`);
-    if (dataView?.table) {
-      log(this.logDiv, "Tipo detectado: TABLE");
-    } else if (dataView?.categorical) {
-      log(this.logDiv, "Tipo detectado: CATEGORICAL");
-    } else if (dataView?.matrix) {
-      log(this.logDiv, "Tipo detectado: MATRIX");
-    } else {
-      log(this.logDiv, "Tipo de DataView desconhecido ou vazio");
-    }
-    this.data = extractTableData(dataView);
-    log(this.logDiv, `Dados carregados: ${this.data.length} linha(s).`);
-    this.button.disabled = this.data.length === 0;
+    this.button.disabled = !dataView?.filters || dataView.filters.length === 0;
   }
 }
