@@ -48,4 +48,5 @@ __azurite_db*__.json
 dist/
 node_modules/
 .tmp/
+package-lock.json
 webpack_statistics.prod.html

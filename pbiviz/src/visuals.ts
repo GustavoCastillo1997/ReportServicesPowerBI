@@ -3,7 +3,7 @@ import IVisual = powerbi.extensibility.visual.IVisual;
 import VisualConstructorOptions = powerbi.extensibility.visual.VisualConstructorOptions;
 import VisualUpdateOptions = powerbi.extensibility.visual.VisualUpdateOptions;
 
-import { createButton, createLogDiv, log } from "./core/ui";
+import { createButton } from "./core/ui";
 import { extractAppliedFilters } from "./core/dataHandler";
 import { sendRequest } from "./core/apiReq";
 import { buildRequestOptions } from "./core/apiReq";
@@ -11,6 +11,7 @@ import { buildRequestOptions } from "./core/apiReq";
 export class Visual implements IVisual {
     private button: HTMLButtonElement;
     private options: VisualConstructorOptions;
+    private appliedFilters: any[] = [];
 
     constructor(options: VisualConstructorOptions) {
         this.options = options;
@@ -29,17 +30,32 @@ export class Visual implements IVisual {
         options.element.appendChild(container);
     }
 
-  private handleButtonClick(): void {
-    const dataView = this.options.dataViews?.[0];
-    if (dataView) {
-      const filters = extractAppliedFilters(dataView.filters || []);
-      const requestOptions = buildRequestOptions(filters);
-      sendRequest(requestOptions);
-    }
-  }
+    private handleButtonClick(): void {
+        console.log("Relatório solicitado! Enviando filtros...");
+        console.log("Filtros aplicados no momento do clique:", this.appliedFilters);
 
-  public update(options: VisualUpdateOptions): void {
-    const dataView = options.dataViews?.[0];
-    this.button.disabled = !dataView?.filters || dataView.filters.length === 0;
-  }
+        if (this.appliedFilters.length > 0) {
+            console.log("Filtros a serem enviados:", this.appliedFilters);
+            const requestOptions = buildRequestOptions(this.appliedFilters);
+            sendRequest(requestOptions);
+        }
+        else {
+            console.log("Nenhum filtro aplicado.");
+        }
+    }
+
+    public update(options: VisualUpdateOptions): void {
+        console.log("Atualizando filtros aplicados...");
+        this.button.disabled = false;
+
+        const dataView = options.dataViews?.[0];
+        if (dataView) {
+            const filters = dataView.metadata?.objects?.filters
+                ? Object.values(dataView.metadata.objects.filters)
+                : [];
+
+            this.appliedFilters = extractAppliedFilters(filters);
+            console.log("Filtros extraídos:", this.appliedFilters);
+        }
+    }
 }

@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="47b1c480-4d11-41ba-80dd-40ce2d9ac226" name="Changes" comment="" />
+    <list default="true" id="47b1c480-4d11-41ba-80dd-40ce2d9ac226" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pbiviz/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/pbiviz/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pbiviz/src/core/apiReq.ts" beforeDir="false" afterPath="$PROJECT_DIR$/pbiviz/src/core/apiReq.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pbiviz/src/core/apiResp.ts" beforeDir="false" afterPath="$PROJECT_DIR$/pbiviz/src/core/apiResp.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pbiviz/src/core/dataHandler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/pbiviz/src/core/dataHandler.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pbiviz/src/core/ui.ts" beforeDir="false" afterPath="$PROJECT_DIR$/pbiviz/src/core/ui.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pbiviz/src/visuals.ts" beforeDir="false" afterPath="$PROJECT_DIR$/pbiviz/src/visuals.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,12 +28,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/GustavoCastillo1997/ReportServicesPowerBI.git",
-    "accountId": "15f74719-167f-4fe3-a9ee-8bf8172294cd"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;GustavoCastillo1997&quot;
   }
-}]]></component>
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/GustavoCastillo1997/ReportServicesPowerBI.git&quot;,
+    &quot;accountId&quot;: &quot;15f74719-167f-4fe3-a9ee-8bf8172294cd&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
