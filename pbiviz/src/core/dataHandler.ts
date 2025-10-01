@@ -18,3 +18,19 @@ export function extractAppliedFilters(filters: any[]): any[] {
         };
     });
 }
+
+
+export async function extractReportContext(report: any): Promise<{
+    reportId: string;
+    pageName: string;
+    pageDisplayName: string;
+}> {
+    const reportId = report.config?.id ?? "Report ID desconhecido";
+    const page = await report.getActivePage();
+
+    return {
+        reportId,
+        pageName: page.name,
+        pageDisplayName: page.displayName
+    };
+}

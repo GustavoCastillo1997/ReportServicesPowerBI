@@ -9,7 +9,7 @@ export function sendRequest(requestOptions: RequestInit): void {
 }
 
 function buildRequestUrl(): string {
-    return "https://apcbrh-powerbi-report-app.azurewebsites.net/api/bi_metricas_saude";
+    return "/api/bi_metricas_saude";
 }
 
 export function buildRequestOptions(data: any[]): RequestInit {
