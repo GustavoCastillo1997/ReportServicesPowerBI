@@ -1,36 +1,31 @@
-import powerbi from "powerbi-visuals-api";
+export function extractData(dataView: powerbi.DataView | undefined, log: (msg: string) => void): any[] {
+  if (!dataView) {
+    log("DataView ausente.");
+    return [];
+  }
 
-export function extractAppliedFilters(filters: any[]): any[] {
-    return filters.map((filter) => {
-        const targetColumn = filter.target?.column?.displayName ?? "Coluna desconhecida...";
-        const targetTable = filter.target?.table ?? "Tabela desconhecida...";
-        const operator = filter.operator ?? "Operador desconhecido...";
-        const values = filter.values ?? [];
-
-        return {
-            filterType: filter.filterType ?? "Tipo de Filtro desconhecido...",
-            target: {
-                table: targetTable,
-                column: targetColumn
-            },
-            operator: operator,
-            values: values
-        };
+  if (dataView.table) {
+    log("Tipo detectado: TABLE");
+    const columns = dataView.table.columns.map(col => col.displayName);
+    return dataView.table.rows.map(row => {
+      const obj: { [key: string]: any } = {};
+      row.forEach((value, index) => {
+        obj[columns[index]] = value;
+      });
+      return obj;
     });
-}
+  }
 
+  if (dataView.categorical) {
+    log("Tipo detectado: CATEGORICAL");
+    return [];
+  }
 
-export async function extractReportContext(report: any): Promise<{
-    reportId: string;
-    pageName: string;
-    pageDisplayName: string;
-}> {
-    const reportId = report.config?.id ?? "Report ID desconhecido";
-    const page = await report.getActivePage();
+  if (dataView.matrix) {
+    log("Tipo detectado: MATRIX");
+    return [];
+  }
 
-    return {
-        reportId,
-        pageName: page.name,
-        pageDisplayName: page.displayName
-    };
+  log("Tipo de DataView desconhecido.");
+  return [];
 }

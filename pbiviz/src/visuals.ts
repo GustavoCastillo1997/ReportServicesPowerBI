@@ -3,59 +3,55 @@ import IVisual = powerbi.extensibility.visual.IVisual;
 import VisualConstructorOptions = powerbi.extensibility.visual.VisualConstructorOptions;
 import VisualUpdateOptions = powerbi.extensibility.visual.VisualUpdateOptions;
 
-import { createButton } from "./core/ui";
-import { extractAppliedFilters } from "./core/dataHandler";
+import { extractData } from "./core/dataHandler";
 import { sendRequest } from "./core/apiReq";
-import { buildRequestOptions } from "./core/apiReq";
+import { log } from "./core/logger";
 
 export class Visual implements IVisual {
-    private button: HTMLButtonElement;
-    private options: VisualConstructorOptions;
-    private appliedFilters: any[] = [];
+  private button: HTMLButtonElement;
+  private logDiv: HTMLDivElement;
+  private data: any[] = [];
 
-    constructor(options: VisualConstructorOptions) {
-        this.options = options;
+  constructor(options: VisualConstructorOptions) {
+    const container = document.createElement("div");
+    container.style.width = "100%";
+    container.style.height = "100%";
+    container.style.display = "flex";
+    container.style.flexDirection = "column";
+    container.style.alignItems = "center";
+    container.style.justifyContent = "center";
 
-        const container = document.createElement("div");
-        container.style.width = "100%";
-        container.style.height = "100%";
-        container.style.display = "flex";
-        container.style.flexDirection = "column";
-        container.style.alignItems = "center";
-        container.style.justifyContent = "center";
+    this.button = document.createElement("button");
+    this.button.textContent = "Gerar Relatório";
+    this.button.disabled = true;
+    this.button.style.margin = "10px 0";
+    this.button.style.padding = "6px 14px";
+    this.button.style.fontSize = "14px";
 
-        this.button = createButton(() => this.handleButtonClick());
+    this.button.onclick = () => sendRequest(this.data, this.logDiv);
 
-        container.appendChild(this.button);
-        options.element.appendChild(container);
-    }
+    this.logDiv = document.createElement("div");
+    this.logDiv.style.width = "90%";
+    this.logDiv.style.height = "150px";
+    this.logDiv.style.overflowY = "auto";
+    this.logDiv.style.border = "1px solid #ccc";
+    this.logDiv.style.padding = "8px";
+    this.logDiv.style.fontSize = "12px";
+    this.logDiv.style.fontFamily = "monospace";
+    this.logDiv.style.backgroundColor = "#f9f9f9";
+    this.logDiv.style.whiteSpace = "pre-wrap";
+    this.logDiv.style.marginTop = "10px";
 
-    private handleButtonClick(): void {
-        console.log("Relatório solicitado! Enviando filtros...");
-        console.log("Filtros aplicados no momento do clique:", this.appliedFilters);
+    container.appendChild(this.button);
+    container.appendChild(this.logDiv);
+    options.element.appendChild(container);
+  }
 
-        if (this.appliedFilters.length > 0) {
-            console.log("Filtros a serem enviados:", this.appliedFilters);
-            const requestOptions = buildRequestOptions(this.appliedFilters);
-            sendRequest(requestOptions);
-        }
-        else {
-            console.log("Nenhum filtro aplicado.");
-        }
-    }
+  public update(options: VisualUpdateOptions): void {
+    const dataView = options.dataViews?.[0];
+    this.data = extractData(dataView, (msg) => log(this.logDiv, msg));
 
-    public update(options: VisualUpdateOptions): void {
-        console.log("Atualizando filtros aplicados...");
-        this.button.disabled = false;
-
-        const dataView = options.dataViews?.[0];
-        if (dataView) {
-            const filters = dataView.metadata?.objects?.filters
-                ? Object.values(dataView.metadata.objects.filters)
-                : [];
-
-            this.appliedFilters = extractAppliedFilters(filters);
-            console.log("Filtros extraídos:", this.appliedFilters);
-        }
-    }
+    log(this.logDiv, `Dados carregados: ${this.data.length} linha(s).`);
+    this.button.disabled = this.data.length === 0;
+  }
 }
